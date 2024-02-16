@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { MemberService } from './member.service';
 
 
@@ -9,23 +9,25 @@ import { MemberService } from './member.service';
   styleUrls: ['./member-detail.component.css']
 })
 export class MemberDetailComponent implements OnInit {
-
+  idString: string = '';
   selectedMember = { name: '', surname: ''};
+  selected_id: any;
   constructor(
     private route: ActivatedRoute,
     private apiService: MemberService
     ) { }
 
   ngOnInit() {
-    this.loadMember();
+    this.route.paramMap.subscribe((param: ParamMap) => {
+      let id = param.get('id');
+      if (id !== null) {
+          this.selected_id = parseInt(id);
+          this.loadMember(id);
+      }
+   })
+   
   }
-  loadMember() {
-    const idString = this.route.snapshot.paramMap.get('id');
-  
-    if (idString !== null) {
-      const id = +idString; // Converte a string para número
-      console.log(id);
-  
+  loadMember(id: any) {
       this.apiService.getMember(id).subscribe(
         data => {
           console.log(data);
@@ -35,9 +37,5 @@ export class MemberDetailComponent implements OnInit {
           console.log(error);
         }
       );
-    } else {
-      console.log('ID não está presente ou é nulo.');
-    }
-  }
-
+}
 }
