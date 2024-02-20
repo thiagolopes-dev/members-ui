@@ -2,10 +2,7 @@
 
 <ul>
   <li *ngFor="let member of members" (click)="memberID(member)">
-       <p>Name: {{member.name}}</p>
-       <p>Surname: {{member.surname}}</p>
+       <p>{{member.id}} - {{member.name}}</p>
   </li>
 </ul>
-
-<app-member-detail></app-member-detail>
 <router-outlet></router-outlet>

@@ -10,8 +10,8 @@ import { MemberService } from './member.service';
 })
 export class MemberDetailComponent implements OnInit {
   idString: string = '';
-  selectedMember = { name: '', surname: ''};
-  selected_id: any;
+  selectedMember = { id: '',name: '', surname: ''};
+  selected_id: any = '';
   constructor(
     private route: ActivatedRoute,
     private apiService: MemberService
@@ -37,5 +37,17 @@ export class MemberDetailComponent implements OnInit {
           console.log(error);
         }
       );
+}
+
+updateMember(id: any){
+  this.apiService.updateMember(this.selectedMember).subscribe(
+    data => {
+      console.log(data);
+      this.selectedMember = data;
+    }, 
+    error => {
+      console.log(error);
+    }
+  );
 }
 }

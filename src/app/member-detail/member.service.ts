@@ -14,4 +14,11 @@ export class MemberService {
         { headers: this.httpHeaders }
       );
     }
+    updateMember(member: any): Observable<any> {
+     let body = { name: member.name, surname: member.surname, phone: member.phone} 
+
+      return this.http.put(this.apiUrl + '/members/' + member.id + '/', body,
+        { headers: this.httpHeaders }
+      );
+    }
 }
