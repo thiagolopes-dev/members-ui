@@ -21,4 +21,10 @@ export class MemberService {
         { headers: this.httpHeaders }
       );
     }
+
+    deleteMember(id: any): Observable<any> {
+       return this.http.delete(this.apiUrl + '/members/' + id + '/',
+         { headers: this.httpHeaders }
+       );
+     }
 }

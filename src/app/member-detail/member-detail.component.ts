@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { AppComponent } from '../app.component';
 import { MemberService } from './member.service';
 
 
@@ -10,49 +11,68 @@ import { MemberService } from './member.service';
 })
 export class MemberDetailComponent implements OnInit {
   idString: string = '';
-  selectedMember = { id: '',name: '', surname: ''};
+  selectedMember = { id: '', name: '', surname: '' };
   selected_id: any = '';
   constructor(
     private route: ActivatedRoute,
     private apiService: MemberService,
-    private router: Router
-    ) { }
+    private router: Router,
+    private appComponent: AppComponent
+  ) { }
 
   ngOnInit() {
     this.route.paramMap.subscribe((param: ParamMap) => {
       let id = param.get('id');
       if (id !== null) {
-          this.selected_id = parseInt(id);
-          this.loadMember(id);
+        this.selected_id = parseInt(id);
+        this.loadMember(id);
       }
-   })
-   
+    })
+
   }
   loadMember(id: any) {
-      this.apiService.getMember(id).subscribe(
-        data => {
-          console.log(data);
-          this.selectedMember = data;
-        }, 
-        error => {
-          console.log(error);
+    this.apiService.getMember(id).subscribe(
+      data => {
+        this.selectedMember = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  updateMember(id: any) {
+    this.apiService.updateMember(this.selectedMember).subscribe(
+      data => {
+        this.selectedMember = data;
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
+
+  newMembeR() {
+    this.router.navigate(['/new-member'])
+  }
+
+  deleteMember() {
+    this.apiService.deleteMember(this.selected_id).subscribe(
+      data => {
+        let index;
+        this.appComponent.members.forEach((element, i) => {
+          if (element.id === this.selected_id) {
+            index = i;
+
+          }
+        });
+        if (typeof index !== 'undefined') {
+          this.appComponent.members.splice(index, 1);
         }
-      );
-}
-
-updateMember(id: any){
-  this.apiService.updateMember(this.selectedMember).subscribe(
-    data => {
-      console.log(data);
-      this.selectedMember = data;
-    }, 
-    error => {
-      console.log(error);
-    }
-  );
-}
-
-newMembeR(){
-  this.router.navigate(['/new-member'])
-}
+      },
+      error => {
+        console.log(error);
+      }
+    );
+  }
 }
