@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { MemberService } from './member.service';
 
 
@@ -14,7 +14,8 @@ export class MemberDetailComponent implements OnInit {
   selected_id: any = '';
   constructor(
     private route: ActivatedRoute,
-    private apiService: MemberService
+    private apiService: MemberService,
+    private router: Router
     ) { }
 
   ngOnInit() {
@@ -49,5 +50,9 @@ updateMember(id: any){
       console.log(error);
     }
   );
+}
+
+newMembeR(){
+  this.router.navigate(['/new-member'])
 }
 }

@@ -19,7 +19,7 @@ export class AppComponent {
   }
 
   members = [
-    {"id": 1 , "name": 'Thiago', "surname": 'Lopes', "photo": 'https://gooogle.com.br'}
+    {"id": 1 , "name": 'Thiago', "surname": 'Lopes', "photo": 'https://gooogle.com.br', "phone": ''}
   ]
 
   getMembers = () => {

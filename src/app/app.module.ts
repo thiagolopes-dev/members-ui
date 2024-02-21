@@ -8,11 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MemberDetailComponent } from './member-detail/member-detail.component';
 import { MemberService } from './member-detail/member.service';
+import { NewMemberComponent } from './new-member/new-member.component';
 
 @NgModule({
-  declarations: [	
+  declarations: [		
     AppComponent,
-      MemberDetailComponent
+      MemberDetailComponent,
+      NewMemberComponent
    ],
   imports: [
     BrowserModule,
