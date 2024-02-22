@@ -1,8 +1,18 @@
-<h1>Members</h1>
+<table class="alt">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Descrição</th>
+      <th>Contato</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let member of members" (click)="memberID(member)">
+      <td>{{member.id}}</td>
+      <td>{{member.name}} {{member.surname}} </td>
+      <td>{{member.phone}}</td>
+    </tr>
+  </tbody>
+</table>
 
-<ul>
-  <li *ngFor="let member of members" (click)="memberID(member)">
-       <p>{{member.id}} - {{member.name}} {{member.surname}} {{member.phone}}</p>
-  </li>
-</ul>
 <router-outlet></router-outlet>

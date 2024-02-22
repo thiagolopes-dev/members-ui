@@ -11,7 +11,7 @@ import { MemberService } from './member.service';
 })
 export class MemberDetailComponent implements OnInit {
   idString: string = '';
-  selectedMember = { id: '', name: '', surname: '' };
+  selectedMember = { id: '', name: '', surname: '' , phone: ''};
   selected_id: any = '';
   constructor(
     private route: ActivatedRoute,

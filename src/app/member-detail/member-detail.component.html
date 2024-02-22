@@ -1,12 +1,12 @@
-<h1>Member Detail Component</h1>
-<p>
-  Membro carregado: {{selectedMember.name}} - {{selectedMember.surname}}
-</p>
+<h3>Member Detail Component</h3>
 
-<p>selected id = {{selected_id}}</p>
-<input type="text" [(ngModel)]="selectedMember.id" readonly>
-<input type="text" [(ngModel)]="selectedMember.name">
-<input type="text" [(ngModel)]="selectedMember.surname">
-<button (click)="updateMember(selectedMember.id)">Update Member</button>
-<button (click)="deleteMember()">Delete Member</button>
-<button (click)="newMembeR()">New Member</button>
+<span>Edição de:</span> {{selectedMember.name}} - {{selectedMember.surname}}
+  
+<input type="text" [(ngModel)]="selectedMember.id" readonly><br>
+<input type="text" [(ngModel)]="selectedMember.name"><br>
+<input type="text" [(ngModel)]="selectedMember.surname"><br>
+<input type="text" [(ngModel)]="selectedMember.phone"><br>
+<button (click)="newMembeR()" class="button primary">Novo</button>
+<button (click)="updateMember(selectedMember.id)">Editar</button>
+<button (click)="deleteMember()">Deletar</button>
+
