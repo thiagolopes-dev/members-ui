@@ -1,6 +1,10 @@
 <h3>Member Detail Component</h3>
 
 <span>Edição de:</span> {{selectedMember.name}} - {{selectedMember.surname}}
+
+<span class="image left">
+    <img src="{{selectedMember.photo}}" alt="">
+</span>
   
 <input type="text" [(ngModel)]="selectedMember.id" readonly><br>
 <input type="text" [(ngModel)]="selectedMember.name"><br>
